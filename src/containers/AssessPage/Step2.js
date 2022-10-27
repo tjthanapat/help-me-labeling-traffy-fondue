@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,17 +12,22 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AssessStep2 = (props) => {
-  const { ticketType, setTicketType, handleSubmit } = props;
+  const {
+    ticketType,
+    setTicketType,
+    openConfirmBox1,
+    setOpenConfirmBox1,
+    handleSubmit,
+  } = props;
   const onChangeTicketType = (event) => {
     setTicketType(event.target.value);
   };
 
-  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenConfirmBox1(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    setOpenConfirmBox1(false);
   };
 
   const handleClickConfirmNoneType = () => {
@@ -75,7 +80,7 @@ const AssessStep2 = (props) => {
           กดปุ่มนี้หากข้อความไม่ใช่ทั้งเรื่องร้องเรียน ข้อเสนอแนะ
           หรือเรื่องสอบถาม
         </p>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={openConfirmBox1} onClose={handleClose}>
           <DialogTitle>โปรดยืนยัน</DialogTitle>
           <DialogContent>
             <DialogContentText>

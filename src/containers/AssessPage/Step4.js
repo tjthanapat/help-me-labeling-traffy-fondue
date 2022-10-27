@@ -7,11 +7,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AssessStep4 = (props) => {
-  const { ticketType, selectedTags, handleSubmit } = props;
+  const {
+    ticketType,
+    selectedTags,
+    openConfirmBox2,
+    setOpenConfirmBox2,
+    handleSubmit,
+  } = props;
+
   const [allowSubmit, setAllowSubmit] = useState(false);
   const [confirmedTags, setConfirmedTags] = useState({
-    standard: [],
-    custom: [],
+    standardTags: [],
+    customTags: [],
   });
 
   useEffect(() => {
@@ -30,7 +37,7 @@ const AssessStep4 = (props) => {
         customTags.push(selectedTags['custom'][tagId][0]);
       }
     }
-    setConfirmedTags({ standard: standardTags, custom: customTags });
+    setConfirmedTags({ standardTags, customTags });
     if (count >= 1) {
       setAllowSubmit(true);
     } else {
@@ -45,12 +52,11 @@ const AssessStep4 = (props) => {
     });
   };
 
-  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenConfirmBox2(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    setOpenConfirmBox2(false);
   };
 
   return (
@@ -58,20 +64,20 @@ const AssessStep4 = (props) => {
       <button
         onClick={handleClickOpen}
         type="button"
-        className="border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded-md w-full mb-5 px-4 py-2 transition duration-500 ease select-none disabled:bg-slate-300 disabled:border-slate-300 disabled:cursor-not-allowed"
+        className="border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded-md w-full my-5 px-4 py-2 transition duration-500 ease select-none disabled:bg-slate-300 disabled:border-slate-300 disabled:cursor-not-allowed"
         disabled={!allowSubmit}
       >
         เรียบร้อย!
       </button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={openConfirmBox2} onClose={handleClose}>
         <DialogTitle>ตรวจสอบอีกครั้ง</DialogTitle>
         <DialogContent>
           <DialogContentText>
             ประเภทที่เลือก คือ {ticketType}
             <br />
             หัวข้อที่เลือก คือ{' '}
-            {confirmedTags['standard']
-              .concat(confirmedTags['custom'])
+            {confirmedTags['standardTags']
+              .concat(confirmedTags['customTags'])
               .join(', ')}
           </DialogContentText>
         </DialogContent>
