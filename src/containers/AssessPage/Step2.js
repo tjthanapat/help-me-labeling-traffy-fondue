@@ -12,7 +12,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AssessStep2 = (props) => {
-  const { ticketType, setTicketType, setAssessedTicket, handleSubmit } = props;
+  const { ticketType, setTicketType, handleSubmit } = props;
   const onChangeTicketType = (event) => {
     setTicketType(event.target.value);
   };

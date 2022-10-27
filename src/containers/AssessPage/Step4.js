@@ -25,7 +25,7 @@ const AssessStep4 = (props) => {
       }
     }
     for (const tagId in selectedTags['custom']) {
-      if (selectedTags['custom'][tagId][0] != '') {
+      if (selectedTags['custom'][tagId][0] !== '') {
         count += 1;
         customTags.push(selectedTags['custom'][tagId][0]);
       }

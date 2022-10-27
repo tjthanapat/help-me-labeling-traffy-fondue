@@ -40,7 +40,7 @@ const AssessStep3 = (props) => {
       }
     }
     for (const tagId in selectedTags['custom']) {
-      if (selectedTags['custom'][tagId][0] != '') {
+      if (selectedTags['custom'][tagId][0] !== '') {
         count += 1;
       }
     }
@@ -53,7 +53,7 @@ const AssessStep3 = (props) => {
     let selectedCustomTagsUpdated = selectedTags['custom'];
 
     // Reached the limit case
-    if (countSelectedTags == tagsLimit) {
+    if (countSelectedTags === tagsLimit) {
       for (const tagName in selectedTags['standard']) {
         let disabledCheckbox = true;
         if (selectedTags['standard'][tagName][0]) {
@@ -70,7 +70,7 @@ const AssessStep3 = (props) => {
       }
       for (const tagId in selectedTags['custom']) {
         let disabledInput = true;
-        if (selectedTags['custom'][tagId][0] != '') {
+        if (selectedTags['custom'][tagId][0] !== '') {
           disabledInput = false;
         }
         const tagUpdated = [selectedTags['custom'][tagId][0], disabledInput];
@@ -99,7 +99,7 @@ const AssessStep3 = (props) => {
         customTag1: customTag1Updated,
       };
 
-      if (selectedTags['custom']['customTag1'][0] != '') {
+      if (selectedTags['custom']['customTag1'][0] !== '') {
         const customTag2Updated = [
           selectedTags['custom']['customTag2'][0],
           false,
@@ -109,7 +109,7 @@ const AssessStep3 = (props) => {
           customTag2: customTag2Updated,
         };
 
-        if (selectedTags['custom']['customTag2'][0] != '') {
+        if (selectedTags['custom']['customTag2'][0] !== '') {
           const customTag3Updated = [
             selectedTags['custom']['customTag3'][0],
             false,
@@ -120,7 +120,7 @@ const AssessStep3 = (props) => {
           };
         }
 
-        if (selectedTags['custom']['customTag3'][0] != '') {
+        if (selectedTags['custom']['customTag3'][0] !== '') {
           const customTag4Updated = [
             selectedTags['custom']['customTag4'][0],
             false,
