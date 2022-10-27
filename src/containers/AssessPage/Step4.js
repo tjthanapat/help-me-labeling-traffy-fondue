@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AssessStep4 = (props) => {
-  const { ticketType, selectedTags } = props;
+  const { ticketType, selectedTags, handleSubmit } = props;
   const [allowSubmit, setAllowSubmit] = useState(false);
   const [confirmedTags, setConfirmedTags] = useState({
     standard: [],
@@ -38,6 +38,13 @@ const AssessStep4 = (props) => {
     }
   }, [selectedTags]);
 
+  const handleClickConfirm = () => {
+    handleSubmit({
+      ticketType: ticketType,
+      ...confirmedTags,
+    });
+  };
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,15 +55,14 @@ const AssessStep4 = (props) => {
 
   return (
     <>
-      <Button
+      <button
         onClick={handleClickOpen}
-        variant="contained"
-        sx={{ marginTop: '28px', marginBottom: '36px' }}
-        fullWidth
+        type="button"
+        className="border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded-md w-full mb-5 px-4 py-2 transition duration-500 ease select-none disabled:bg-slate-300 disabled:border-slate-300 disabled:cursor-not-allowed"
         disabled={!allowSubmit}
       >
-        ส่ง
-      </Button>
+        เรียบร้อย!
+      </button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>ตรวจสอบอีกครั้ง</DialogTitle>
         <DialogContent>
@@ -64,12 +70,14 @@ const AssessStep4 = (props) => {
             ประเภทที่เลือก คือ {ticketType}
             <br />
             หัวข้อที่เลือก คือ{' '}
-            {confirmedTags['standard'].concat(confirmedTags['custom']).join(', ')}
+            {confirmedTags['standard']
+              .concat(confirmedTags['custom'])
+              .join(', ')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>กลับไปแก้ไข</Button>
-          <Button onClick={handleClose}>ยืนยัน</Button>
+          <Button onClick={handleClickConfirm}>ยืนยัน</Button>
         </DialogActions>
       </Dialog>
     </>

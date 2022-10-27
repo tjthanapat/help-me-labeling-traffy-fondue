@@ -5,12 +5,18 @@ import AssessStep4 from './Step4';
 
 import { standardTags, customTags } from './tags';
 
-const AssessPage = () => {
+const AssessPage = (props) => {
+  const { setSuccess } = props;
   const [ticketType, setTicketType] = useState(null);
   const [selectedTags, setSelectedTags] = useState({
     standard: standardTags(),
     custom: customTags,
   });
+
+  const handleSubmit = (assessedTicket) => {
+    console.log(assessedTicket);
+    setSuccess(true);
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-blue-200">
@@ -35,13 +41,21 @@ const AssessPage = () => {
             </p>
           </div>
         </section>
-        <AssessStep2 ticketType={ticketType} setTicketType={setTicketType} />
+        <AssessStep2
+          ticketType={ticketType}
+          setTicketType={setTicketType}
+          handleSubmit={handleSubmit}
+        />
         <AssessStep3
           show={!!ticketType}
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}
         />
-        <AssessStep4 ticketType={ticketType} selectedTags={selectedTags} />
+        <AssessStep4
+          ticketType={ticketType}
+          selectedTags={selectedTags}
+          handleSubmit={handleSubmit}
+        />
       </div>
     </div>
   );

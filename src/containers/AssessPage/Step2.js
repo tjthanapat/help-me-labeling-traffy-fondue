@@ -12,7 +12,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AssessStep2 = (props) => {
-  const { ticketType, setTicketType } = props;
+  const { ticketType, setTicketType, setAssessedTicket, handleSubmit } = props;
   const onChangeTicketType = (event) => {
     setTicketType(event.target.value);
   };
@@ -23,6 +23,14 @@ const AssessStep2 = (props) => {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClickConfirmNoneType = () => {
+    handleSubmit({
+      ticketType: '',
+      standardTags: [],
+      customTags: [],
+    });
   };
 
   return (
@@ -77,7 +85,7 @@ const AssessStep2 = (props) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>ย้อนกลับ</Button>
-            <Button onClick={handleClose}>ยืนยัน</Button>
+            <Button onClick={handleClickConfirmNoneType}>ยืนยัน</Button>
           </DialogActions>
         </Dialog>
       </div>
