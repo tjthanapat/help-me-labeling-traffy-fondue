@@ -78,7 +78,7 @@ const AssessPage = (props) => {
         />
         <footer className="my-5">
           <p className="text-sm text-gray-500 text-center">
-            Created by TJTHANAPAT
+            Created by tjthanapat
           </p>
         </footer>
       </div>
